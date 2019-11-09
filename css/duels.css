@@ -2,6 +2,10 @@ body {
 	min-height: 100vh;
 }
 
+#duels {
+	padding-top: 2rem;
+}
+
 .main-match-container {
 	border: 0.5px solid #333333;
 	padding: 2px;
