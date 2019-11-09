@@ -1,0 +1,1098 @@
+body {
+    font-family: code-saver, sans-serif;
+    overflow-x: hidden;
+    background-color: #ff809b;
+    background-image: url('../img/gridPatternWhite.svg');
+    min-height: 100vh;
+    background-position: top -10px center;
+    background-size: 2rem auto;
+    background-repeat: repeat;
+}
+
+div.bg-melt {
+    max-height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 500px;
+    z-index: -1;
+    background-color: #fff032;
+}
+
+div.bg-melt.transform {
+    max-height: 400px;
+    transition: max-height 0.3s ease-out;
+}
+
+div.melter {
+    margin-top: 0;
+    position: relative;
+    background: url('../img/bgMelt.svg');
+    background-repeat: repeat-x;
+    background-size: 800px 171px;
+    min-height: 171px;
+}
+
+div.melter.melts {
+    margin-top: 400px;
+    transition: margin-top 0.3s ease-out;
+}
+
+.row {
+    min-width: 100%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.navbar-brand {
+    cursor: pointer;
+}
+
+h3.home-title {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+div.img-main img {
+    margin: auto;
+    margin-top: 2.5rem;
+    display: block;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+
+input[type=number],
+select {
+    min-width: 300px;
+    padding: 1rem;
+}
+
+input[type=text] {
+    min-width: 300px;
+    padding: 0.5rem;
+}
+
+p.current-wizard-label,
+p.opponent-wizard-label {
+    margin-top: 1rem;
+}
+
+a {
+    cursor: pointer;
+}
+
+a.real-styled {
+    color: #007bff !important;
+}
+
+a:hover,
+a:active {
+    text-decoration: underline !important;
+}
+
+a.real-styled:hover,
+a.real-styled:active {
+    color: #0056B3 !important;
+}
+
+ul.list-group {
+    padding: 1.5rem;
+}
+
+ul.list-group li:hover {
+    opacity: 0.9;
+}
+
+ul.wizards-list {
+    list-style: none;
+}
+
+div.back-btn {
+    margin-bottom: 1rem;
+}
+
+span.back-btn {
+    cursor: pointer;
+}
+
+div.page-controls {
+    margin-bottom: 1.75rem;
+}
+
+div.predict-btn,
+div.prediction-data {
+    margin-top: 1.5rem;
+}
+
+div.match-prediction {
+    background-color: #ffd45a;
+    display: inline-block;
+    padding: 0.25rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    border-radius: 4px;
+}
+
+div.match-prediction div {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+div.cheese-wizard-image-small {
+    max-width: 25vw;
+    height: auto;
+    margin: auto;
+}
+
+div.jumbotron {
+    margin-bottom: 1.75rem !important;
+}
+
+div.search-toggle,
+div.search-controls {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+div.traits.traits-container {
+    margin: auto;
+}
+
+/*div.block-item.block-item-outer {
+    margin: 0.5rem;
+}*/
+
+div.block-item.block-item-inner {
+    background-color: aliceblue;
+    padding: 1.5rem;
+    width: 218px;
+    height: 218px;
+}
+
+div.block-item.block-item-inner:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+
+div.single-wizard {
+    margin: auto;
+    width: 100%;
+}
+
+div.view-single-wizard {
+    display: inline;
+}
+
+div.cheese-wizard-image.selected-opponent-img,
+div.cheese-wizard-image.my-wizard-img {
+    margin: auto;
+    width: 480px;
+    height: 500px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+div.cheese-wizard-image.selected-by-address-opponent-img,
+div.cheese-wizard-image.selected-by-address-owned-img {
+    margin: auto;
+    width: 200px;
+    height: 208px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+div.wizard-card-block-item {
+    display: inline-block;
+    width: 220px;
+    height: 220px;
+}
+
+div.wizard-card-block-item-outer {
+    margin: 0.25rem;
+}
+
+div.wizard-card-img {
+    padding: 0.5rem;
+}
+
+div.wizard-card-img:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+
+div.selected-wizard-left,
+div.selected-wizard-right {
+    width: 50%;
+}
+
+div.selected-wizard-left {
+    padding: 1.5rem;
+    float: left;
+    background-color: #ffd45a;
+}
+
+div.selected-wizard-right {
+    float: right;
+    position: relative;
+    /*top: -55px;*/
+}
+
+.icon.external-link {
+    height: 20px;
+    margin-left: 0.75rem;
+}
+
+.btn-selected-compare,
+.btn-inverse {
+    border: 1px solid black;
+    background-color: #ffd45a;
+    margin-top: 1rem;
+}
+
+.icon.icon-search {
+    height: 20px;
+    margin: 0.5rem;
+    margin-left: 0;
+}
+
+div.traits.traits-container {
+    clear: both;
+    position: relative;
+}
+
+/*div.traits.traits-container.select-wizard {
+    z-index: -1;
+    top: -50px;
+}*/
+
+div.traits.traits-container.wizards-compare {
+    margin-top: 1.75rem;
+}
+
+div.block-item p {
+    margin: auto;
+    line-height: 30px;
+}
+
+p.rarity-percentage,
+p.extra-rare {
+    font-style: italic;
+}
+
+p.label > strong {
+    text-transform: uppercase;
+}
+
+p.trait-name {
+    font-weight: 500;
+    color: #333333;
+}
+
+.duel-title {
+    margin: auto;
+    position: relative;
+    width: 100px;
+}
+
+.duels-table-container {
+    overflow: scroll;
+}
+.duels-table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+
+.duels-winner.fire,
+.duels-loser.fire {
+	background-color: #ff809b;
+}
+.duels-winner.water,
+.duels-loser.water {
+	background-color: #35d1e7;
+}
+.duels-winner.wind,
+.duels-loser.wind {
+	background-color: #8bea63;
+}
+
+.duels-block {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.duels-card-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    width: 100%;
+    height: 180px;
+    padding: 3px;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.duel-player-id {
+    margin: auto;
+}
+
+.duels-card-container:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+
+.duels-card-container.winner {
+    background-color: #ffd45a;
+}
+
+.duels-card-container.loser {
+    background-color: rgb(228, 224, 252);
+}
+
+.duels-card-container.timed-out,
+.duels-card-left-outcome.timed-out,
+.duels-card-right-outcome.timed-out {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.duels-card-left-container, .duels-card-right-container {
+    height: 100%;
+}
+.duels-card-left-wizard, .duels-card-right-wizard {
+    border: 1px solid #666;
+    border-radius: 3px;
+    background-color: #b79afc;
+
+    margin: 3px;
+
+    height: 120px;
+    width: 120px;
+
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+.duels-card-left-wizard {
+    left: 6px;
+}
+.duels-card-right-wizard {
+    right: 6px;
+}
+.duels-card-left-outcome, .duels-card-right-outcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 120px;
+
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.duels-card-left-outcome {
+    left: 6px;
+}
+.duels-card-right-outcome {
+    right: 6px;
+}
+.duels-outcome-base-points {
+    color: black;
+}
+.duels-outcome-loss-points {
+    color: #ff809b;
+    font-weight: 600;
+}
+.duels-outcome-gain-points {
+    color: green;
+    font-weight: 600;
+}
+
+.timed-out > .duels-outcome-base-points {
+    color: #ffffff;
+}
+
+.timed-out > img {
+    background-color: #ffffff;
+    border-radius: 4px;
+}
+
+.timed-out > .duels-outcome-gain-points {
+    color: #8bea63;
+}
+
+img.frowned-out {
+    width: auto;
+    height: 75px;
+}
+
+div.block-time {
+    position: absolute;
+    margin-top: -70px;
+    font-weight: 500;
+}
+
+.duels-card-rounds {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin: auto;
+    height: 100%;
+    width: 60%;
+
+}
+.duels-card-round {
+    display: inline-block;
+    position: relative;
+
+    width: 84px;
+    height: 84px;
+}
+.duels-card-round-p1, .duels-card-round-p2 {
+    position: absolute;
+    display: flex;
+
+    width: 60%;
+    height: 60%;
+}
+.duels-card-round-p1 {
+    left: 0px;
+    top: 0px;
+}
+.duels-card-round-p2 {
+    right: 0px;
+    bottom: 0px;
+}
+.duels-card-round-icon {
+    margin: auto;
+    height: 90%;
+    width: 90%;
+}
+.duels-winner {
+    border: 2px solid #8bea63;
+    z-index: +1;
+}
+
+.duels-winner:not(.card-image) {
+    background-color: #ff809b;
+}
+
+
+.duels-loser {
+    border: 1px solid #ff809b;
+}
+
+
+.duels-table td {
+    border: 1px solid black;
+    padding: 3px;
+}
+.duels-table th {
+    border: 1px solid gray;
+    padding: 3px;
+}
+
+.duels-card-right-container.view-opponent-history {
+    cursor: pointer;
+}
+
+/* Modal */
+.modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    /*background-color: #ffd45a;*/
+    display: table;
+    transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.modal-container {
+    width: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    margin: 0px auto;
+    padding: 20px 30px;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+    font-family: Helvetica, Arial, sans-serif;
+    background: #ffffff;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.modal-header h3 {
+    margin-top: 0;
+}
+
+.modal-body {
+    margin: 20px 0;
+}
+
+.modal-default-button {
+    float: right;
+}
+
+div.duel-review-vs {
+    display: inline;
+    margin: auto;
+    padding: 1.75rem;
+}
+
+/*
+* The following styles are auto-applied to elements with
+* transition="modal" when their visibility is toggled
+* by Vue.js.
+*
+* You can easily play with the modal transition by editing
+* these styles.
+*/
+
+.modal-enter {
+    opacity: 0;
+}
+
+.modal-leave-active {
+    opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.submit-duel-challenge {
+    margin: auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Chat & Sidebar */
+.notification-count .vs-icon.small {
+    font-size: 15px;
+    font-weight: bold;
+    position: absolute;
+    top: 17px;
+    right: 5.5rem;
+}
+.vs-sidebar.vs-sidebar-primary.vs-sidebar-position-right {
+    padding: 0.5rem;
+    right: 0;
+}
+
+.chat-icon.sidebar-ctrlr {
+    position: absolute;
+    top: 1.7rem;
+    right: 6rem;
+    cursor: pointer;
+}
+
+div.menu.login-items {
+    position: absolute;
+    top: 1.5rem;
+    left: 0.5rem;
+}
+
+.vs-sidebar--background {
+    height: 0;
+    width: 0;
+    display: none;
+}
+
+.sidebar-wrapper,
+.sidebar-wrapper h5 {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+}
+
+span.you {
+    font-style: italic;
+}
+
+#testnet_challenge_menu {
+    left: 0 !important;
+}
+
+div.duel-requests {
+    margin-top: 1.25rem;
+}
+
+.pending-challenge-footer {
+    margin: 1.25rem;
+}
+
+.con-vs-avatar.pending-opponnent,
+.con-vs-avatar.pending-wizard {
+    margin: auto;
+}
+
+.pending-type-label {
+    margin-left: 1rem;
+}
+
+.all-wizards {
+    width: 100%;
+}
+
+.all-wizards .card {
+    border: 1px solid #000;
+    box-shadow: 0.3rem 0.3rem 0 0 #000;
+    border-radius: 0px !important;
+}
+
+.all-wizards .card:hover {
+    cursor: pointer;
+}
+
+.all-wizards .card-img-top {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    background-color: #fff;
+    background-size: 475px;
+    background-repeat: no-repeat;
+    background-position: center -100px;
+    border-radius: 50%;
+    border-top: 3px solid #000;
+    border-bottom: 3px solid #FFC033;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+.all-wizards .card-img-overlay {
+    background-color: #B79AFC;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    left: 105px;
+    text-align: center;
+    padding: 3px;
+}
+
+.all-wizards .card-img-overlay .icon {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    filter: invert(1);
+}
+
+.all-wizards .card {
+    min-height: 345px;
+    background-color: #E0DBFC;
+}
+.all-wizards .affinity-water {
+    background-color: #C2F2F2;
+}
+
+.all-wizards .affinity-fire {
+    background-color: #FFE6EF;
+}
+
+.all-wizards .affinity-wind {
+    background-color: #D2FFB5;
+}
+
+.all-wizards .affinity-water .card-img-overlay {
+    background-color: #35D1E7;
+}
+
+.all-wizards .affinity-fire .card-img-overlay {
+    background-color: #FF809B;
+}
+
+.all-wizards .affinity-wind .card-img-overlay {
+    background-color: #8BEA63;
+}
+
+.all-wizards .card-body {
+    text-align: center;
+    background-color: #FFF032;
+    border-top: 2px solid #FFF;
+    margin-top: -75px;
+    padding-top: 90px;
+}
+
+.all-wizards dl {
+    font-size: .8em;
+}
+
+.all-wizards dt {
+    text-align: left;
+}
+
+.all-wizards dd {
+    text-align: right;
+}
+
+.navbar {
+    background-color: #FFF032;
+    background-image: url('../img/gridPatternWhite.svg');
+    background-position: top -10px center;
+    background-size: 2rem auto;
+    border-bottom: 1px solid black;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-repeat: repeat;
+}
+.subnav {
+    background-color: #FFFF85;
+    border-bottom: 1px solid #000;
+}
+.subnav a:hover {
+    background-color: #FFEF57;
+    text-decoration: none !important;
+}
+.subnav a.active, .subnav a.active:hover {
+    background-color: #FFE133;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 2.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    color: #000000;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+footer.home {
+    position: absolute;
+}
+
+img.footer.footer-bg {
+    min-width: 100vw;
+    height: auto;
+    left: 0;
+    right: 0;
+}
+
+.footer.home .footer-descr {
+    position: absolute;
+}
+
+.footer-descr {
+    bottom: 0;
+    width: 100%;
+    background-color: #FFF032;
+    background-image: url('../img/gridPatternWhite.svg');
+    background-position: top -10px center;
+    background-size: 2rem auto;
+    background-repeat: repeat;
+    min-height: 50px;
+}
+
+.footer-descr.home {
+    background-color: #ff809b;
+    /*border-top: 1px solid #ffffff;*/
+}
+
+.footer.left {
+    width: 75%;
+    position: relative;
+    padding-left: 2rem;
+    float: left;
+}
+
+.footer.right {
+    float: right;
+    margin-top: 10px;
+    width: 25%;
+}
+
+.footer.list-inline {
+    clear: both;
+    text-align: right;
+    padding-right: 2rem;
+}
+
+a.home-back,
+a.footer-link {
+    color: #000;
+}
+
+a.home-back:hover,
+a.footer-link:hover {
+    color: #000;
+}
+
+.navbar-brand.mb-0 h1.tk-exocet.footer {
+    cursor: auto;
+}
+
+.tk-exocet > a,
+.tk-exocet > a:hover,
+.tk-exocet > a:focus {
+    color: #000000;
+    text-decoration: none !important;
+}
+
+/*.duel-stats-modal .modal-wrapper .modal-container {
+    background-color: rgba(255, 239, 87, 0.95);
+    background-color: #333333;
+    background-image: url(../img/gridPatternWhite.svg);
+    background-position: top -10px center;
+    background-size: 2rem auto;
+    background-repeat: repeat;
+}*/
+
+.duel-stats-modal-header {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#duel-stats-table tbody tr:nth-child(odd) {
+    background-color: #ffef57;
+}
+#duel-stats-table tbody tr:nth-child(even) {
+    background-color: #ffd45a;
+}
+#duel-stats-table thead tr {
+    background-color: #ffc033;
+}
+#duel-stats-table thead tr td,
+#duel-stats-table tbody tr td {
+    padding: 1.5rem;
+}
+.duel-stats-total-column { 
+    font-weight: 700; 
+}
+.wizardDuelStatsMain {
+    padding: 1.5rem;
+    font-size: 1.4em;
+}
+.wizardDuelStatsMain span {
+    font-weight: 600;
+}
+.wizardDuelStatsTable {
+    margin-top: 20px;
+    font-size: 1.2em;
+    border-radius: 0.3rem;
+}
+.wizardDuelStatsTable td {
+    padding: 3px;
+}
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width:320px)  {
+    body, html {
+        overflow-x: hidden;
+    }
+    div.wrapper.mount-wrapper {
+        padding: 1rem;
+    }
+    a.auth-main {
+        margin-right: 1rem;
+    }
+    .footer.left {
+        width: auto;
+        position: relative;
+        padding-left: 2rem;
+        float: none;
+        text-align: center;
+    }
+    .footer.right {
+        float: none;
+        margin-top: 0;
+        width: auto;
+        text-align: center;
+    }
+    .footer.list-inline {
+        clear: both;
+        text-align: center;
+        padding-right: 0;
+    }
+    div.selected-wizard-right {
+        position: relative;
+        top: 0;
+        margin-top: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+    div.cheese-wizard-image.selected-opponent-img, 
+    div.cheese-wizard-image.my-wizard-img {
+        background-position: -100px;
+    }
+    footer {
+        margin-top: 0;
+        left: auto;
+        right: auto;
+        bottom: auto;
+    }
+    div.container.container-fluid.main-content {
+        min-height: 70vh;
+    }
+    .footer-descr.home {
+        background: none;
+        background-image: none;
+        border: none;
+    }
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px)  {
+    body, html {
+        overflow-x: hidden;
+    }
+    div.wrapper.mount-wrapper {
+        padding: 1rem;
+    }
+    a.auth-main {
+        margin-right: 0.5rem;
+    }
+    h3.home-title {
+        margin-top: -1rem;
+    }
+    .footer.left {
+        width: auto;
+        position: relative;
+        padding-left: 2rem;
+        float: none;
+        text-align: center;
+    }
+    .footer.right {
+        float: none;
+        margin-top: 0;
+        width: auto;
+        text-align: center;
+    }
+    .footer.list-inline {
+        clear: both;
+        text-align: center;
+        padding-right: 0;
+    }
+    div.selected-wizard-right {
+        position: relative;
+        top: 0;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    div.cheese-wizard-image.selected-opponent-img, 
+    div.cheese-wizard-image.my-wizard-img {
+        background-position: -100px;
+    }
+    footer {
+        margin-top: 0;
+        left: auto;
+        right: auto;
+        bottom: auto;
+    }
+    div.container.container-fluid.main-content {
+        min-height: 70vh;
+    }
+    .footer-descr.home {
+        background: none;
+        background-image: none;
+        border: none;
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:610px)  {
+    div.wrapper.mount-wrapper {
+        padding: 1rem;
+    }
+    div.container.container-fluid.main-content {
+        width: 95%;
+    }
+    div.wrapper.mount-wrapper.container.container-fluid.main-content > div.jumbotron {
+        margin-top: 1.5rem;
+    }
+    .footer.left {
+        width: auto;
+        position: relative;
+        padding-left: 2rem;
+        float: none;
+        text-align: center;
+    }
+    .footer.right {
+        float: none;
+        margin-top: 0;
+        width: auto;
+        text-align: center;
+    }
+    .footer.list-inline {
+        clear: both;
+        text-align: center;
+        padding-right: 0;
+    }
+    
+    div.selected-wizard-left, div.selected-wizard-right {
+        width: 100%;
+    }
+    div.selected-wizard-right {
+        position: relative;
+        top: 0;
+        margin-top: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+    div.owner {
+        word-break: break-word;
+    }
+    div.block-item.block-item-outer,
+    div.block-item.block-item-inner {
+        width: 100%;
+        text-align: center;
+    }
+    .duels-card-container {
+        display: inline-block;
+        flex: unset;
+        height: 100%;
+    }
+    .duels-card-left-container, .duels-card-right-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    div.block-time {
+        display: none;
+    }
+}
+
+@media (max-width:1275px)  {
+    div.footer.left {
+        width: auto;
+    }
+    div.footer.right {
+        min-width: 320px;
+        width:auto;
+    }
+}
+
+.dead {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+h2.leaderboard {
+    margin-bottom: 30px;
+}
+
+.leaderboard h4 {
+    background-color: #000;
+    padding: 5px;
+    color: #fff;
+    text-align: center;
+    margin-top: 24px;
+}

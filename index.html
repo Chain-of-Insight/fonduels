@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:type" content="website">
+    <meta name="description" content="Want to out manoeuvre your opponents? Predict their turns before they've been forecasted? Sharpen your rind in a free-to-play testnet environment? Grate no further, Cheeze of Insight is for you!">
+    <meta property="og:description" content="Want to out manoeuvre your opponents? Predict their turns before they've been forecasted? Sharpen your rind in a free-to-play testnet environment? Grate no further, Cheeze of Insight is for you!">
+    <meta property="og:image" content="https://cheezeofinsight.com/img/holiness.jpg">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta content="@cheezeofinsight" name="twitter:site">
+    <meta content="Cheeze of Insight" name="twitter:title">
+    <meta content="Want to out manoeuvre your opponents? Predict their turns before they've been forecasted? Sharpen your rind in a free-to-play testnet environment? Grate no further, Cheeze of Insight is for you!" name="twitter:description">
+    <meta content="@cheezeofinsight" name="twitter:creator">
+    <meta content="https://cheezeofinsight.com/img/holiness.jpg" name="twitter:image:src">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <title>Cheeze of Insight - Fonduels!</title>
+
+    <!-- CSS Imports -->
+    <link href="./css/adobe-type-kit.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap4-block-grid.min.css" rel="stylesheet">
+    <link href="./css/vuesax.css" rel="stylesheet">
+    <link href="./css/components.vue-simple-context-menu.css" rel="stylesheet" type="text/css">
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/duels.css" rel="stylesheet">
+    <!-- JS Imports -->
+    <!-- Firebase -->
+    <script type="text/javascript" src="./js/firebase.js"></script>
+    <!-- jQuery :( -->
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <!-- Vue.js -->
+    <script type="text/javascript" src="./js/vue.min.js"></script>
+    <script type="text/javascript" src="./js/vuefire.js"></script>
+    <script type="text/javascript" src="./js/vuesax.js"></script>
+    <script type="text/javascript" src="./js/vue-simple-context-menu.js"></script>
+</head>
+<body>
+    <div id="duels">
+
+        <div class="bg-melt bg-melter" v-bind:class="{transform: isBgAnimated}">
+            <div class="melter" v-bind:class="{melts: isBgAnimated}"></div>
+        </div>
+        <nav class="navbar navbar-light">
+            <span class="navbar-brand mb-0 h1 tk-exocet" >
+                <a href="https://cheezeofinsight.com/">Cheeze of Insight</a>
+            </span>
+        </nav>
+        <nav class="nav subnav justify-content-center">
+            <a class="nav-link" v-on:click="goHome();">Home</a>
+            <a class="nav-link" href="/learn">Learn</a>
+            <a class="nav-link active" v-on:click="goPlay();">Play</a>
+            <a class="nav-link" href="/insights">Insights</a>
+            <a class="nav-link" href="/markets">Predictions</a>
+        </nav>
+
+        <a class="back" href="/">Back</a>
+
+        <div class="container container-fluid main-content">
+            <div class="main-match-container">
+                <div class="forecast-panel">
+                    <h3>Forecast your Spells!</h3>
+
+                    <div id="wiz1-placeholder"></div>
+
+                    <round-picker label="1" v-bind:value.sync="ourMoves[0]"></round-picker>
+                    <round-picker label="2" v-bind:value.sync="ourMoves[1]"></round-picker>
+                    <round-picker label="3" v-bind:value.sync="ourMoves[2]"></round-picker>
+                    <round-picker label="4" v-bind:value.sync="ourMoves[3]"></round-picker>
+                    <round-picker label="5" v-bind:value.sync="ourMoves[4]"></round-picker>
+
+                    <div v-if="mode != 'offline'" class="forecast-submit-button">
+                        <button
+                            class="btn btn-inverse"
+                            @click="submitTurn();"
+                            :disabled="ourMovesSubmitted || !(ourMoves[0] && ourMoves[1] && ourMoves[2] && ourMoves[3] && ourMoves[4])">
+
+                            Submit
+                        </button>
+                    </div>
+                </div>
+
+                <div class="forecast-panel">
+                    <h3>Your Opponent</h3>
+
+                    <div id="wiz2-placeholder"></div>
+
+                    <div v-if="mode == 'offline'">
+                        <round-picker label="1" v-bind:value.sync="opponentMoves[0]"></round-picker>
+                        <round-picker label="2" v-bind:value.sync="opponentMoves[1]"></round-picker>
+                        <round-picker label="3" v-bind:value.sync="opponentMoves[2]"></round-picker>
+                        <round-picker label="4" v-bind:value.sync="opponentMoves[3]"></round-picker>
+                        <round-picker label="5" v-bind:value.sync="opponentMoves[4]"></round-picker>
+                    </div>
+
+                </div>
+            </div>
+
+            <duel-status
+                    v-if="duelResults"
+                    v-bind:outcome="duelResults.outcome"
+                    v-bind:power="duelResults.power"
+                    v-bind:score="duelResults.score">
+            </duel-status>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="markets-footer">
+        <div class="footer-descr markets">
+            <div class="footer left">
+                <span class="navbar-brand mb-0 h1 tk-exocet footer">
+                    <a href="https://twitter.com/cheezeofinsight" target="_blank">COI</a>
+                </span>2019
+            </div>
+            <div class="footer right">
+                <ul class="footer list-inline">
+                    <li class="list-inline-item">
+                        <a class="footer-link" href="https://cheezeofinsight.com/policy/tos.html">Terms Of Service</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="footer-link" href="https://cheezeofinsight.com/policy/privacy.html">Privacy Policy</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Template for round picking -->
+    <script type="text/x-template" id="round-picker-template">
+        <div class="affinityPicker">
+            <span>{{ label }}</span>
+            <button>
+                <img
+                    :class="'icon affinityIcon ' + (value == 2 ? 'affinitySelectedFire' : '')"
+                    src="/img/icons/fire.svg"
+                    @click="value=2; $emit('update:value', 2);">
+            </button>
+            <button>
+                <img
+                    :class="'icon affinityIcon ' + (value == 3 ? 'affinitySelectedWater' : '')"
+                    src="/img/icons/water.svg"
+                    @click="value=3; $emit('update:value', 3);">
+            </button>
+            <button>
+                <img
+                    :class="'icon affinityIcon ' + (value == 4 ? 'affinitySelectedWind' : '')"
+                    src="/img/icons/wind.svg"
+                    @click="value=4; $emit('update:value', 4);">
+            </button>
+        </div>
+    </script>
+
+    <!-- Template for duel status -->
+    <script type="text/x-template" id="duel-status-template">
+        <div class="duel-status-container">
+            <h3>Duel Results: {{ outcome }} !!</h3>
+            <div><span>Power: {{ power }}</span></div>
+            <div><span>Score: {{ score }}</span></div>
+        </div>
+    </script>
+
+    <!-- Template For Sidebar Component -->
+    <script type="text/x-template" id="sidebar-template">
+        <div id="parentx">
+            <slot name="menu-items"></slot>
+            <img id="close_sidebar" src="img/icons/chat.svg" class="icon chat-icon sidebar-ctrlr" @click="showSidebar = !showSidebar;">
+            <vs-sidebar position-right  parent="body" default-index="1"  color="primary" class="sidebarx" spacer v-model="showSidebar">
+
+                <!-- Sidebar Header -->
+                <slot class="header-sidebar" name="header">
+                    <vs-avatar  size="70px" src="https://randomuser.me/api/portraits/men/85.jpg"/>
+                    <h4>Title</h4>
+                </slot>
+
+                <!-- Main Content -->
+                <slot name="body">Body</slot>
+
+                <!-- Footer -->
+                <div class="footer-sidebar" slot="footer">
+                    <p></p>
+                </div>
+            
+            </vs-sidebar>
+        </div>
+    </script>
+    <!-- End Sidebar Template -->
+    
+    <!-- Template For Modal Component -->
+    <script type="text/x-template" id="modal-template">
+        <transition name="modal">
+            <div class="modal-mask">
+                <div class="modal-wrapper">
+                    <div class="modal-container">
+                        <!-- Header Slot -->
+                        <div class="modal-header">
+                            <slot name="header"></slot>
+                        </div>
+                        <!-- Body Slot -->
+                        <div class="modal-body">
+                            <slot name="body"></slot>
+                        </div>
+                        <!-- Footer Slot -->
+                        <div class="modal-footer">
+                            <slot name="footer">
+                                <button id="modal_close" class="modal-default-button btn btn-primary" @click="$emit('close')">
+                                    <slot name="footer">Close</slot>
+                                </button>
+                            </slot>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
+    </script>
+    <!-- End Modal Template -->
+
+    <!-- Begin Notifications Template -->
+    <script type="text/x-template" id="notification-template">
+        <div class="con-notifications-position">
+            <slot name="notification" @click="$vs.notify({title:'Position top-right',text:'Lorem ipsum dolor sit amet, consectetur',color:'success',position:'top-right'})" color="success" type="flat">Notification</slot>
+        </div>
+    </script>
+    <!-- End Notifications Template -->
+
+    <!-- Begin Duel Request Template -->
+    <script type="text/x-template" id="duel-request-template">
+        <vs-row vs-justify="center">
+            <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
+                <vs-card>
+                    <slot name="header">
+                        <h3>Title</h3>
+                    </slot>
+                    <slot name="body">
+                        <span>Body</span>
+                    </slot>
+                    <slot name="footer">
+                        <vs-row vs-justify="flex-end">Footer</vs-row>
+                    </slot>
+                </vs-card>
+            </vs-col>
+        </vs-row>
+    </script>
+    <!-- End Duel Request Template -->
+
+    <!-- Wizard card template -->
+    <script type="text/x-template" id="wizard-card-template">
+        <div class="all-wizards">
+            <div :class="'card mb-3 affinity-' + wizard.specialPower.toLowerCase()">
+                <div class="card-img-top" :style="'background-image: url(' + api.getWizardImageUrlById(wizard.id) + ');'">
+                    <div class="card-img-overlay d-flex justify-content-end">
+                        <img class="icon" :src="'/img/icons/'+ wizard.specialPower.toLowerCase()+ '.svg'" v-if="wizard.affinity !== 0">
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ wizard.specialPower }} Wizard #{{ wizard.id }}</h5>
+                    <dl class="card-text row text-muted">
+                        <dt class="col-sm-4">Power</dt>
+                        <dd class="col-sm-8">{{ Math.round(wizard.power / 1000000000000) }}</dd>
+                        <dt class="col-sm-4">Owner</dt>
+                        <dd class="col-sm-8">{{ wizard.owner.substring(0, 12) }}&hellip;</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    </script>
+    <!-- End Wizard card template -->
+
+    <script type="text/javascript" src="build/app.js"></script>
+</body>
+</html>
