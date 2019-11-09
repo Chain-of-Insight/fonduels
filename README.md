@@ -1,2 +1,2 @@
 # fonduels
-An alternate Cheeze Wizards tournament contract and interfact providing lightning speed duel resolution using Enigma Protocol
+An alternate Cheeze Wizards tournament contract and UI for lightning speed duel resolution, using Enigma Protocol that resolve in a single block without sacrificing security
