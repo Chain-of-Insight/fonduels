@@ -42,6 +42,21 @@ trait ContractInterface{
             wizard1:U256,
             wizard2:U256,
             affinities:Vec<u8>);
+    fn commit_to_duel_decrypt( enc_msg1: Vec<u8>,
+                enc_msg2: Vec<u8>,
+                wizard1:U256,
+                wizard2:U256,
+                affinities:Vec<u8>);
+    fn commit_to_duel_decrypt_sig( enc_msg1: Vec<u8>,
+            enc_msg2: Vec<u8>,
+            signature1: Vec<u8>,
+            signature2: Vec<u8>,
+            wizard1:U256,
+            wizard2:U256,
+            affinities:Vec<u8>,
+            nonce:U256
+            );                
+                   
 }
 
 // The implementation of the exported ESC functions should be defined in the trait implementation 
@@ -96,7 +111,40 @@ impl Contract{
         score=score/100;
         score
     }
-    
+    fn decrypt(enc_msg: &Vec<u8>) -> Vec<u8> {
+        let key = Self::get_pkey();
+        eprint!("Decrypting bytes ({:?})", enc_msg);
+        decrypt(enc_msg, &key)
+        
+    }
+    fn verify_signature(
+        signature: Vec<u8>,
+        MoveSet1:Vec<u8>,
+        nonce:U256
+    ) -> H160 {
+        eprint!("Verifying signature: {:?}", signature.to_vec());
+        let mut message: Vec<u8> = Vec::new();
+        
+        
+        
+        message.extend_from_slice(&MoveSet1);
+        
+        message.extend_from_slice(&H256::from(nonce));
+        
+       
+        let mut array = [0; 65];
+        array.copy_from_slice(&signature); 
+        let mut prefixed_message: Vec<u8> = Vec::new();
+        prefixed_message.extend_from_slice(b"\x19Ethereum Signed Message:\n32");
+        prefixed_message.extend_from_slice(&message.keccak256().to_vec());
+        let sender_pubkey = KeyPair::recover(&prefixed_message, array).unwrap();
+        let mut sender_raw = [0u8; 20];
+        sender_raw.copy_from_slice(&sender_pubkey.keccak256()[12..32]);
+        let sender = H160::from(&sender_raw);
+        eprint!("Recovered sender: {:?}", sender);
+        sender
+    }
+
 }
 
 impl ContractInterface for Contract {
@@ -136,5 +184,69 @@ impl ContractInterface for Contract {
         eth_contract.ResolveDuel(Score,negative, wizard1,wizard2);
 
     }
-    
+    fn commit_to_duel_decrypt( enc_msg1: Vec<u8>,
+            enc_msg2: Vec<u8>,
+            wizard1:U256,
+            wizard2:U256,
+            affinities:Vec<u8>,
+            ){
+        let MoveSet1=Self::decrypt(&enc_msg1); 
+        let MoveSet2=Self::decrypt(&enc_msg2);  
+        let temp:u8=affinities[0];
+        let temp2:u8=affinities[1];     
+        let score=Self::duel_score(MoveSet1,MoveSet2,temp,temp2);
+        let mut negative=false;
+        if score<0{
+            negative=true;
+        }
+        let Score= U256::from(score);
+        let wizard_eth_addr: String = Self::get_wizard_eth_address();
+        let prefixed_eth_addr = format!("0x{}",wizard_eth_addr);
+        let eth_contract = EthContract::new(&prefixed_eth_addr);
+        eth_contract.ResolveDuel(Score,negative, wizard1,wizard2);
+
+    }
+    fn commit_to_duel_decrypt_sig( enc_msg1: Vec<u8>,
+            enc_msg2: Vec<u8>,
+            signature1: Vec<u8>,
+            signature2: Vec<u8>,
+            wizard1:U256,
+            wizard2:U256,
+            
+            affinities:Vec<u8>,
+            nonce:U256
+            ){
+        let MoveSet1=Self::decrypt(&enc_msg1); 
+        let MoveSet2=Self::decrypt(&enc_msg2);
+        let M1=MoveSet1.clone();
+        let M2=MoveSet2.clone();            
+        let address1=Self::verify_signature(
+
+        signature1,
+       
+        M1,
+        nonce
+        );
+        let address2=Self::verify_signature(
+        signature2,
+       
+        M2,
+        nonce
+        );
+         
+        let temp:u8=affinities[0];
+        let temp2:u8=affinities[1];     
+        let score=Self::duel_score(MoveSet1,MoveSet2,temp,temp2);
+        let mut negative=false;
+        if score<0{
+            negative=true;
+        }
+        let Score= U256::from(score);
+        let wizard_eth_addr: String = Self::get_wizard_eth_address();
+        let prefixed_eth_addr = format!("0x{}",wizard_eth_addr);
+        let eth_contract = EthContract::new(&prefixed_eth_addr);
+        //eth_contract.ResolveDuel(Score,negative, wizard1,wizard2,nonce,address1,address2);
+
+    }
 }
+
