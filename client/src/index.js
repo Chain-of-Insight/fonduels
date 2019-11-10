@@ -75,6 +75,7 @@ let duelsVm = new Vue({
         // Dependencies
         Provider: require('./providers'),
         Enigma: require('./enigma/enigmaInit'),
+        TaskWorker: require('./enigma/worker'),
         enigma: null,
         api: require('./api'),
         duelUtils: require('./duels'),
@@ -181,6 +182,7 @@ let duelsVm = new Vue({
                 // Wallets
                 this.wallets.rinkeby = false;
                 this.wallets.mainnet = accounts[0];
+                this.wallets.enigma = accounts[0];
                 console.log('Accounts =>', this.wallets);
                 
                 // ERC721 Instances
@@ -334,7 +336,7 @@ let duelsVm = new Vue({
             );
 
             // Debug
-            //console.log('Resolved Duel =>', result);
+            console.log('Resolved Duel =>', result);
 
             const power = Math.round(parseInt(result[0]) / 1000000000000);
             const score = parseInt(result[1]);
@@ -345,6 +347,36 @@ let duelsVm = new Vue({
                 score: score,
                 outcome: outcome,
             };
+
+
+            // Now Enigma
+            //const duelCommitTask = (taskArgs, enigma, account) => {
+            /*
+            let taskArgs = [
+                [76, 'uint256'],
+                [17, 'uint256'],
+            ];
+            Move Set p1 (int), Move Set p2 (int), wizard id 1 (int), wizard id 2 (int), affinities (array)
+            let taskFn = 'commit_to_duel(uint, uint, uint256, uint256, uint)';
+            */
+
+            let affinities = [
+                this.ourWizard.affinity,
+                this.opposingWizard.affinity
+            ];
+
+            let taskArgs = [
+                [ourMoves, 'uint8[]'],
+                [opponentMoves, 'uint8[]'],
+                [this.ourWizardId, 'uint256'],
+                [this.opposingWizardId, 'uint256'], 
+                [affinities, 'uint8[]'],
+            ];
+
+            console.log('taskArgs =>', taskArgs);
+
+            let task = await this.TaskWorker.duelCommitTask(taskArgs, this.enigma, this.wallets.enigma);
+            console.log('Enigma Task (duelCommitTask) =>', task);
 
             //console.log("Compiled duel results:", this.duelResults);
             this.clearSessionStorage();
