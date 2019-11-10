@@ -366,11 +366,11 @@ let duelsVm = new Vue({
             ];
 
             let taskArgs = [
-                [ourMoves, 'uint8[]'],
-                [opponentMoves, 'uint8[]'],
+                [ourMoves, 'uint64[]'],
+                [opponentMoves, 'uint64[]'],
                 [this.ourWizardId, 'uint256'],
                 [this.opposingWizardId, 'uint256'], 
-                [affinities, 'uint8[]'],
+                [affinities, 'uint64[]']
             ];
 
             console.log('taskArgs =>', taskArgs);

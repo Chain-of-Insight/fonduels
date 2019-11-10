@@ -17,7 +17,17 @@ const duelCommitTask = async (taskArgs, enigma, account) => {
     //Smart Contract "Sample.Sol" has been deployed at ETH address: 0x5b9b42d6e4B2e4Bf8d42Eba32D46918e10899B66
     const contractAddr = "0x5b9b42d6e4B2e4Bf8d42Eba32D46918e10899B66";
 
-    let taskFn = 'commit_to_duel(uint, uint, uint256, uint256, uint)';
+    /*
+    let taskArgs = [
+        [ourMoves, 'uint64[]'],
+        [opponentMoves, 'uint64[]'],
+        [this.ourWizardId, 'uint256'],
+        [this.opposingWizardId, 'uint256'], 
+        [affinities, 'uint64[]']
+    ];
+    */
+
+    let taskFn = 'commit_to_duel(uint64[], uint64[], uint256, uint256, uint64[])';
     let taskGasLimit = 100000;
     let taskGasPx = utils.toGrains(1);
 
