@@ -74,6 +74,8 @@ let duelsVm = new Vue({
     data: () => ({
         // Dependencies
         Provider: require('./providers'),
+        Enigma: require('./enigma/enigmaInit'),
+        enigma: null,
         api: require('./api'),
         duelUtils: require('./duels'),
         wizardUtils: require('./wizards'),
@@ -134,6 +136,10 @@ let duelsVm = new Vue({
             }, 0);
         }, 0);
 
+        this.enigma = await this.Enigma.initEnigma();
+
+        console.log('this.enigma =>', this.enigma);
+
         // prior to any 'await' call, we need to determine whether we are in
         // offline mode or not
         this.mode = (this.isOfflineMode() ? 'offline' : 'challenge');
@@ -175,7 +181,7 @@ let duelsVm = new Vue({
                 // Wallets
                 this.wallets.rinkeby = false;
                 this.wallets.mainnet = accounts[0];
-                //console.log('Accounts =>', this.wallets);
+                console.log('Accounts =>', this.wallets);
                 
                 // ERC721 Instances
                 this.contracts.mainnet.wizards = await this.Provider.mainnetWizardsInstance();
