@@ -1,0 +1,48 @@
+{
+  "name": "fonduels",
+  "version": "1.0.0",
+  "description": "An alternate Cheeze Wizards tournament contract and UI for lightning speed duel resolution, using Enigma Protocol, to resolve duels in a single block without sacrificing security",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "develop": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cheeze-Of-Insight/fonduels.git"
+  },
+  "keywords": [
+    "Cheeze Wizards",
+    "hackathon",
+    "ETH Global",
+    "ETH Waterloo 2",
+    "Ethereum",
+    "Dapper Labs",
+    "Web3",
+    "JavaScript",
+    "Solidity",
+    "Enigma"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Cheeze-Of-Insight/fonduels/issues"
+  },
+  "homepage": "https://github.com/Cheeze-Of-Insight/fonduels#readme",
+  "dependencies": {
+    "browserify": "^16.5.0",
+    "dotenv": "^8.0.0",
+    "envify": "^4.1.0",
+    "jquery": "^3.4.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "svgson": "^4.0.0",
+    "vue": "^2.6.10",
+    "web3": "^1.2.0"
+  },
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.1"
+  }
+}
