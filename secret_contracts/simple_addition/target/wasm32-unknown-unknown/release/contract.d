@@ -1,1 +1,0 @@
-/Users/jjj/Documents/Code/ETHWaterloo/Simple/secret_contracts/simple_addition/target/wasm32-unknown-unknown/release/contract.wasm: /Users/jjj/Documents/Code/ETHWaterloo/Simple/secret_contracts/simple_addition/src/lib.rs
